@@ -18,6 +18,12 @@
 		E4D23A8928291A1700948416 /* OrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D23A8828291A1700948416 /* OrderController.swift */; };
 		E4D23A8B28291A2D00948416 /* PayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D23A8A28291A2D00948416 /* PayController.swift */; };
 		E4D23A8D28291A3300948416 /* FavouriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D23A8C28291A3300948416 /* FavouriteController.swift */; };
+		E4D23A8F2829245600948416 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D23A8E2829245600948416 /* NetworkSessionManager.swift */; };
+		E4D23A912829246900948416 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D23A902829246900948416 /* NetworkError.swift */; };
+		E4D23A93282924AE00948416 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D23A92282924AE00948416 /* URLSessionMock.swift */; };
+		E4D23A9528292FEE00948416 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D23A9428292FEE00948416 /* AppConfiguration.swift */; };
+		E4D23A99282942D500948416 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D23A98282942D500948416 /* Request.swift */; };
+		E4D23A9B2829488800948416 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D23A9A2829488800948416 /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +40,14 @@
 		E4D23A8828291A1700948416 /* OrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderController.swift; sourceTree = "<group>"; };
 		E4D23A8A28291A2D00948416 /* PayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayController.swift; sourceTree = "<group>"; };
 		E4D23A8C28291A3300948416 /* FavouriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteController.swift; sourceTree = "<group>"; };
+		E4D23A8E2829245600948416 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
+		E4D23A902829246900948416 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		E4D23A92282924AE00948416 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		E4D23A9428292FEE00948416 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		E4D23A96282930CE00948416 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		E4D23A97282930DC00948416 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
+		E4D23A98282942D500948416 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		E4D23A9A2829488800948416 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EECEFD76ADA13D38C3335F24 /* Pods_Starbucks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Starbucks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F017D225791F8593FF4A4218 /* Pods-Starbucks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.release.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +86,8 @@
 			children = (
 				E4C0357F282908AA0098E1B8 /* .swiftlint.yml */,
 				E4C0357D2829084F0098E1B8 /* .swiftformat */,
+				E4D23A96282930CE00948416 /* debug.xcconfig */,
+				E4D23A97282930DC00948416 /* release.xcconfig */,
 				E44AC410282905CC0048584A /* Starbucks */,
 				E44AC40F282905CC0048584A /* Products */,
 				627E56EAF24749111E98BF08 /* Pods */,
@@ -116,6 +132,7 @@
 			children = (
 				E44AC411282905CC0048584A /* AppDelegate.swift */,
 				E44AC413282905CC0048584A /* SceneDelegate.swift */,
+				E4D23A9428292FEE00948416 /* AppConfiguration.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -162,7 +179,6 @@
 		E4C0358828290AB20098E1B8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E4D23A83282918D000948416 /* View */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -199,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				E4D23A7C2829176400948416 /* Repositories */,
-				E4D23A7D2829176900948416 /* UseCases */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -218,16 +233,14 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		E4D23A7D2829176900948416 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
 		E4D23A7E282917CB00948416 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E4D23A8E2829245600948416 /* NetworkSessionManager.swift */,
+				E4D23A92282924AE00948416 /* URLSessionMock.swift */,
+				E4D23A902829246900948416 /* NetworkError.swift */,
+				E4D23A98282942D500948416 /* Request.swift */,
+				E4D23A9A2829488800948416 /* NetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -262,13 +275,6 @@
 				E4D23A8C28291A3300948416 /* FavouriteController.swift */,
 			);
 			path = Favourites;
-			sourceTree = "<group>";
-		};
-		E4D23A83282918D000948416 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,10 +414,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E44AC416282905CC0048584A /* HomeController.swift in Sources */,
+				E4D23A912829246900948416 /* NetworkError.swift in Sources */,
 				E44AC412282905CC0048584A /* AppDelegate.swift in Sources */,
+				E4D23A93282924AE00948416 /* URLSessionMock.swift in Sources */,
+				E4D23A99282942D500948416 /* Request.swift in Sources */,
 				E44AC414282905CC0048584A /* SceneDelegate.swift in Sources */,
+				E4D23A8F2829245600948416 /* NetworkSessionManager.swift in Sources */,
+				E4D23A9528292FEE00948416 /* AppConfiguration.swift in Sources */,
 				E4D23A8D28291A3300948416 /* FavouriteController.swift in Sources */,
 				E4D23A8B28291A2D00948416 /* PayController.swift in Sources */,
+				E4D23A9B2829488800948416 /* NetworkService.swift in Sources */,
 				E4D23A8928291A1700948416 /* OrderController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
