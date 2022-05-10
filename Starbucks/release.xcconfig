@@ -1,0 +1,14 @@
+//
+//  release.xcconfig
+//  Starbucks
+//
+//  Created by 송태환 on 2022/05/09.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Pods/Target Support Files/Pods-Starbucks/Pods-Starbucks.production.xcconfig"
+
+STARBUCKS_API_BASE_URL = www.starbucks.co.kr
+SERVER_API_BASE_URL = codesquad.kr

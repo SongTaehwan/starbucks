@@ -19,5 +19,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>serverApiURL</key>
+	<string>$(SERVER_API_BASE_URL)</string>
+	<key>starbuckApiURL</key>
+	<string>$(STARBUCKS_API_BASE_URL)</string>
 </dict>
 </plist>
