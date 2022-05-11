@@ -1,0 +1,97 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  SLACK_URL = ENV["SLACK_URL"]
+  APP_URL = ENV["APP_URL"]
+  
+  desc "🏃‍♂️ Push a new dev build to S3"
+  lane :dev do
+    build_app(
+      workspace: "Starbucks.xcworkspace", 
+      scheme: "Starbucks",
+      output_directory: "./Build",
+      configuration: "Debug",
+      silent: true,
+      export_options: {
+        compileBitcode: true,
+        destination: "export", # 로컬에 export 할지 애플로 바로 업로드할지 결정
+        manifest: {
+          appURL: "#{APP_URL}/Starbucks.ipa",
+          displayImageURL: APP_URL,
+          fullSizeImageURL: APP_URL
+        },
+        method: "development", # export 방식
+        signingStyle: "automatic", # 자동 signing
+        thinning: "<none>" # 디바이스 특성에 맞게 설치 최적화
+      }
+    )
+
+    desc "✅ Notify build result"
+    slack(
+      message: "App debug build done!",
+      slack_url: SLACK_URL,
+      success: true, 
+      # Output containing extended log output
+      payload: {
+        "Build Date" => Time.new.to_s,
+        "Built by" => "Fastlane",
+      } 
+    )
+
+    desc "🪣 Upload a new ipa file to S3"
+    aws_s3(
+      # All of these are used to make Shenzhen's `ipa distribute:s3` command
+      access_key: ENV['S3_ACCESS_KEY'],               # Optional - defaults to AWS Instance Profile Creds.
+      secret_access_key: ENV['S3_SECRET_ACCESS_KEY'], # Optional - defaults to AWS Instance Profile Creds.
+      bucket: ENV['S3_BUCKET'],                       # Required from user.
+      region: ENV['S3_REGION'],                       # Required from user.
+      upload_metadata: true,                          # Upload version.json, plist and HTML. Set to false to skip uploading of these files.
+      plist_file_name: "manifest.plist",
+      path: "",
+      skip_html_upload: true
+    )
+
+    desc "✅ Notify distribution result"
+    slack(
+      message: "Debug App distributed successfully!",
+      slack_url: SLACK_URL,
+      success: true, 
+      # Output containing extended log output
+      payload: {
+        "Download Link": "https://release.d1s24baiz13p2e.amplifyapp.com",
+        "Build Date" => Time.new.to_s,
+        "Built by" => "Fastlane",
+      } 
+    )
+
+  end
+
+  desc "🚨 Sending error notification"
+  error do |lane, exception|
+    slack(
+      message: exception.to_s,
+      slack_url: SLACK_URL,
+      success: false, 
+      # Output containing extended log output
+      payload: { 
+        "Build Date" => Time.new.to_s,
+        "Built by" => "Fastlane",
+      } 
+    )
+  end
+end

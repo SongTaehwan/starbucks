@@ -4,6 +4,9 @@
 
 ## User Custom
 .DS_Store
+.env
+Starbucks/fastlane/report.xml
+Starbucks/fastlane/README.md
 
 ## User settings
 xcuserdata/
