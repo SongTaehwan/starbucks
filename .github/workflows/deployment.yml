@@ -44,9 +44,17 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.2
-          bundler-cache: true
+          bundler-cache: true # should be false for production deployment
+
+      # caching should be removed for production
+      - uses: actions/cache@v3
+        id: pod-cache
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
 
       - name: Install dependencies
+        if: steps.pod-cache.outputs.cache-hit != 'true'
         run: pod install
 
       - name: Build and deploy
