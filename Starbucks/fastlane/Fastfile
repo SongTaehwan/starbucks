@@ -15,8 +15,6 @@
 
 default_platform(:ios)
 
-xcversion(version: "~> 13.2")
-
 platform :ios do
   SLACK_URL = ENV["SLACK_URL"]
   APP_URL = ENV["APP_URL"]

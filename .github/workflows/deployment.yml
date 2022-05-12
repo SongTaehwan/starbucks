@@ -27,6 +27,9 @@ jobs:
       run:
         working-directory: ./Starbucks
 
+    env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
+      BUNDLE_GEMFILE: ${{ github.workspace }}/Starbucks/Gemfile
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -42,12 +45,6 @@ jobs:
         with:
           ruby-version: 2.7.2
           bundler-cache: true
-          working-directory: ${{ github.workspace }}/Starbucks
-
-      # - name: Setup Fastlane
-      #   run: |
-      #     gem install bundler
-      #     bundle install
 
       - name: Install dependencies
         run: pod install

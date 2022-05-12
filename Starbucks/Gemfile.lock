@@ -218,6 +218,8 @@ GEM
       xcpretty (~> 0.2, >= 0.0.7)
 
 PLATFORMS
+  x86_64-darwin-19
+  x86_64-darwin-20
   x86_64-darwin-21
 
 DEPENDENCIES
@@ -225,4 +227,4 @@ DEPENDENCIES
   fastlane-plugin-aws_s3
 
 BUNDLED WITH
-   2.3.11
+   2.3.13
