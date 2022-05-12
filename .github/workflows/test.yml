@@ -20,6 +20,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: macos-latest
 
+    # set env reference
+    environment: Testing
+
     defaults:
       run:
         working-directory: ./Starbucks
@@ -50,3 +53,6 @@ jobs:
 
     - name: Run test
       run: bundle exec fastlane test
+      env:
+        SLACK_URL: ${{ secrets.SLACK_URL }}
+        
