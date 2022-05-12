@@ -20,6 +20,10 @@ jobs:
     # The type of runner that the job will run on
     runs-on: macos-latest
 
+    defaults:
+      run:
+        working-directory: ./Starbucks
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -36,18 +40,13 @@ jobs:
         ruby-version: 2.7.2
         bundler-cache: true
 
-    - name: Setup Bundler
-      run: gem install bundler
+    - name: Setup Fastlane
+      run: |
+        gem install bundler
+        bundle install
 
-    - name: Install fastlane
-      run: bundle install
-
-    - name: Install Pods
-      # change working directory
-      working-directory: ./Starbucks
+    - name: Install dependencies
       run: pod install
 
     - name: Run test
-    # change working directory
-      working-directory: ./Starbucks
       run: bundle exec fastlane test
