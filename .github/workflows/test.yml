@@ -27,23 +27,26 @@ jobs:
       run:
         working-directory: ./Starbucks
 
+    env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
+      BUNDLE_GEMFILE: ${{ github.workspace }}/Starbucks/Gemfile
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout
       uses: actions/checkout@v2
-    - run: echo $(pwd)
+
     - name: Select Xcode Version
       uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: '13.2'
-        working-directory: ./Starbucks
 
     - name: Setup ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7.2
         bundler-cache: true
+        cache-version: 1
 
     # - name: Setup Fastlane
     #   run: bundle install
