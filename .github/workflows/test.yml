@@ -36,6 +36,9 @@ jobs:
         ruby-version: 2.7.2
         bundler-cache: true
 
+    - name: Setup Bundler
+      run: gem install bundler
+
     - name: Install Pods
       # change working directory
       working-directory: ./Starbucks
