@@ -5,9 +5,18 @@
 ## User Custom
 .DS_Store
 .env
-Starbucks/fastlane/report.xml
-Starbucks/fastlane/README.md
-Starbucks/fastlane/test_output
+
+# fastlane specific
+**/fastlane/report.xml
+
+# deliver temporary files
+**/fastlane/Preview.html
+
+# snapshot generated screenshots
+**/fastlane/screenshots
+
+# scan temporary files
+**/fastlane/test_output
 
 ## User settings
 xcuserdata/
