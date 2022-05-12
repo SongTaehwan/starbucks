@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3EA0648BD7B861EE9990D30E /* Pods_Starbucks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECEFD76ADA13D38C3335F24 /* Pods_Starbucks.framework */; };
+		E4214D6F282CBA6200AA773F /* StarbucksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4214D6E282CBA6200AA773F /* StarbucksTests.swift */; };
 		E44AC412282905CC0048584A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44AC411282905CC0048584A /* AppDelegate.swift */; };
 		E44AC414282905CC0048584A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44AC413282905CC0048584A /* SceneDelegate.swift */; };
 		E44AC416282905CC0048584A /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44AC415282905CC0048584A /* HomeController.swift */; };
@@ -26,8 +27,20 @@
 		E4D23A9B2829488800948416 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D23A9A2829488800948416 /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E4214D70282CBA6200AA773F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E44AC406282905CC0048584A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E44AC40D282905CC0048584A;
+			remoteInfo = Starbucks;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		BA7C86E8C193020E61CE7BDA /* Pods-Starbucks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starbucks.debug.xcconfig"; path = "Target Support Files/Pods-Starbucks/Pods-Starbucks.debug.xcconfig"; sourceTree = "<group>"; };
+		E4214D6C282CBA6200AA773F /* StarbucksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarbucksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4214D6E282CBA6200AA773F /* StarbucksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarbucksTests.swift; sourceTree = "<group>"; };
 		E44AC40E282905CC0048584A /* Starbucks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starbucks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44AC411282905CC0048584A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E44AC413282905CC0048584A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +66,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E4214D69282CBA6200AA773F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E44AC40B282905CC0048584A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -81,6 +101,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E4214D6D282CBA6200AA773F /* StarbucksTests */ = {
+			isa = PBXGroup;
+			children = (
+				E4214D6E282CBA6200AA773F /* StarbucksTests.swift */,
+			);
+			path = StarbucksTests;
+			sourceTree = "<group>";
+		};
 		E44AC405282905CC0048584A = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +117,7 @@
 				E4D23A96282930CE00948416 /* debug.xcconfig */,
 				E4D23A97282930DC00948416 /* release.xcconfig */,
 				E44AC410282905CC0048584A /* Starbucks */,
+				E4214D6D282CBA6200AA773F /* StarbucksTests */,
 				E44AC40F282905CC0048584A /* Products */,
 				627E56EAF24749111E98BF08 /* Pods */,
 				4A470DA8901588E0FE5873DA /* Frameworks */,
@@ -99,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				E44AC40E282905CC0048584A /* Starbucks.app */,
+				E4214D6C282CBA6200AA773F /* StarbucksTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,6 +310,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E4214D6B282CBA6200AA773F /* StarbucksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4214D74282CBA6200AA773F /* Build configuration list for PBXNativeTarget "StarbucksTests" */;
+			buildPhases = (
+				E4214D68282CBA6200AA773F /* Sources */,
+				E4214D69282CBA6200AA773F /* Frameworks */,
+				E4214D6A282CBA6200AA773F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E4214D71282CBA6200AA773F /* PBXTargetDependency */,
+			);
+			name = StarbucksTests;
+			productName = StarbucksTests;
+			productReference = E4214D6C282CBA6200AA773F /* StarbucksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E44AC40D282905CC0048584A /* Starbucks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E44AC422282905D00048584A /* Build configuration list for PBXNativeTarget "Starbucks" */;
@@ -310,6 +358,10 @@
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
+					E4214D6B282CBA6200AA773F = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = E44AC40D282905CC0048584A;
+					};
 					E44AC40D282905CC0048584A = {
 						CreatedOnToolsVersion = 13.3;
 					};
@@ -329,11 +381,19 @@
 			projectRoot = "";
 			targets = (
 				E44AC40D282905CC0048584A /* Starbucks */,
+				E4214D6B282CBA6200AA773F /* StarbucksTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E4214D6A282CBA6200AA773F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E44AC40C282905CC0048584A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -409,6 +469,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E4214D68282CBA6200AA773F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4214D6F282CBA6200AA773F /* StarbucksTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E44AC40A282905CC0048584A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,6 +498,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E4214D71282CBA6200AA773F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E44AC40D282905CC0048584A /* Starbucks */;
+			targetProxy = E4214D70282CBA6200AA773F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		E44AC41C282905D00048584A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -442,6 +518,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E4214D72282CBA6200AA773F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FCQD35AW5P;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.Song.StarbucksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Starbucks.app/Starbucks";
+			};
+			name = Debug;
+		};
+		E4214D73282CBA6200AA773F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FCQD35AW5P;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.Song.StarbucksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Starbucks.app/Starbucks";
+			};
+			name = Release;
+		};
 		E44AC420282905D00048584A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -617,6 +729,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E4214D74282CBA6200AA773F /* Build configuration list for PBXNativeTarget "StarbucksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4214D72282CBA6200AA773F /* Debug */,
+				E4214D73282CBA6200AA773F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E44AC409282905CC0048584A /* Build configuration list for PBXProject "Starbucks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
