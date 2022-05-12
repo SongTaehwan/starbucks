@@ -23,8 +23,7 @@ platform :ios do
   lane :test do
     run_tests(
       workspace: "Starbucks.xcworkspace",
-      scheme: "Starbucks",
-      devices: ["iPhone 13 Pro"]
+      scheme: "Starbucks"
     )
 
     slack(
