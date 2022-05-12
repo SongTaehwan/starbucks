@@ -18,7 +18,27 @@ default_platform(:ios)
 platform :ios do
   SLACK_URL = ENV["SLACK_URL"]
   APP_URL = ENV["APP_URL"]
-  
+
+  desc "Run tests"
+  lane :test do
+    run_tests(
+      workspace: "Starbucks.xcworkspace",
+      scheme: "Starbucks",
+      devices: ["iPhone 13 Pro"]
+    )
+
+    slack(
+      message: "✅ Test done!",
+      slack_url: SLACK_URL,
+      success: true, 
+      # Output containing extended log output
+      payload: {
+        "Build Date" => Time.new.to_s,
+        "Built by" => "Fastlane",
+      } 
+    )
+  end
+
   desc "🏃‍♂️ Push a new dev build to S3"
   lane :dev do
     build_app(

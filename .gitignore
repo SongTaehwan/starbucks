@@ -7,6 +7,7 @@
 .env
 Starbucks/fastlane/report.xml
 Starbucks/fastlane/README.md
+Starbucks/fastlane/test_output
 
 ## User settings
 xcuserdata/
