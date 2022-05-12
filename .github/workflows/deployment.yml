@@ -42,7 +42,7 @@ jobs:
         with:
           ruby-version: 2.7.2
           bundler-cache: true
-          working-directory: ./Starbucks
+          working-directory: ${{ github.workspace }}/Starbucks
 
       # - name: Setup Fastlane
       #   run: |

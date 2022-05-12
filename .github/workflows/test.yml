@@ -32,23 +32,21 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout
       uses: actions/checkout@v2
+    - run: echo $(pwd)
     - name: Select Xcode Version
       uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: '13.2'
+        working-directory: ./Starbucks
 
     - name: Setup ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7.2
         bundler-cache: true
-        working-directory: ./Starbucks
-        
 
     # - name: Setup Fastlane
-    #   run: |
-    #     gem install bundler
-    #     bundle install
+    #   run: bundle install
 
     - name: Install dependencies
       run: pod install
