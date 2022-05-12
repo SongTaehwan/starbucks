@@ -37,7 +37,11 @@ jobs:
         bundler-cache: true
 
     - name: Install Pods
+      # change working directory
+      working-directory: ./Starbucks
       run: pod install
 
     - name: Run test
+    # change working directory
+      working-directory: ./Starbucks
       run: bundle exec fastlane test
