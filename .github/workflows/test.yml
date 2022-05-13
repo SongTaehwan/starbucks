@@ -47,14 +47,7 @@ jobs:
         ruby-version: 2.7.2
         bundler-cache: true
 
-    - uses: actions/cache@v3
-      id: pod-cache
-      with:
-        path: Pods
-        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-
     - name: Install dependencies
-      if: steps.pod-cache.outputs.cache-hit != 'true'
       run: pod install
 
     - name: Run test
