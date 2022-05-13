@@ -10,6 +10,6 @@ import UIKit
 class OrderController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .systemMint
+    self.view.backgroundColor = .systemBlue
   }
 }

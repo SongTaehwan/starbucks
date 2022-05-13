@@ -83,7 +83,8 @@ platform :ios do
       upload_metadata: true,                          # Upload version.json, plist and HTML. Set to false to skip uploading of these files.
       plist_file_name: "manifest.plist",
       path: "",
-      skip_html_upload: true
+      skip_html_upload: true,
+      acl: "private"
     )
 
     desc "✅ Notify distribution result"
