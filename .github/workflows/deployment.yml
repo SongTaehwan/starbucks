@@ -70,3 +70,4 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APP_BUNDLE_IDENTIFIER: ${{ secrets.APP_BUNDLE_IDENTIFIER }}
           GIT_URL: ${{ secrets.GIT_URL }}
+          GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}
