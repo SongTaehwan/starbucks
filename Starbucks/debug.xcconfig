@@ -1,0 +1,14 @@
+//
+//  debug.xcconfig
+//  Starbucks
+//
+//  Created by 송태환 on 2022/05/09.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Pods/Target Support Files/Pods-Starbucks/Pods-Starbucks.debug.xcconfig"
+
+STARBUCKS_API_BASE_URL = 69447052-d88b-4595-9062-c130a120a525.mock.pstmn.io
+SERVER_API_BASE_URL = codesquad.kr
