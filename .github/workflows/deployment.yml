@@ -72,3 +72,4 @@ jobs:
           GIT_URL: ${{ secrets.GIT_URL }}
           GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          CI: ${{ secrets.CI }}

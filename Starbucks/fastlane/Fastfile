@@ -41,6 +41,8 @@ platform :ios do
 
   desc "🏃‍♂️ Push a new dev build to S3"
   lane :dev do
+    setup_ci if ENV['CI']
+
     sync_code_signing(
       git_basic_authorization: ENV["GIT_AUTH_TOKEN"],
       type: "development", 
