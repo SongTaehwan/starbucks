@@ -56,7 +56,7 @@ jobs:
         run: pod install
       
       - name: Build and deploy
-        run: bundle exec fastlane flight
+        run: bundle exec fastlane dev
         env:
           SLACK_URL: ${{ secrets.SLACK_URL }}
           S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}

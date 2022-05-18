@@ -27,6 +27,8 @@ platform :ios do
   S3_SECRET_ACCESS_KEY = ENV['S3_SECRET_ACCESS_KEY']
   S3_BUCKET = ENV['S3_BUCKET']
   S3_REGION = ENV['S3_REGION']
+  APPLE_ID = ENV["APPLE_ID"]
+  APPLE_ACCOUNT_ID = ENV["APPLE_ACCOUNT_ID"]
 
   desc "Run tests"
   lane :test do
@@ -116,6 +118,11 @@ platform :ios do
     )
 
     upload_to_testflight(
+      # 없으면 일반적인 애플 로그인 프로세스로 진행
+      # 로컬 환경에선 keychain 이 정보를 가진 경우에는 자동 로그인됌
+      # https://docs.fastlane.tools/actions/upload_to_testflight/#use-an-application-specific-password-to-upload
+      username: APPLE_ACCOUNT_ID,
+      apple_id: APPLE_ID,
       skip_waiting_for_build_processing: true,
       changelog: "Testing App"
     )
