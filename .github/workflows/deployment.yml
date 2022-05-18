@@ -71,3 +71,4 @@ jobs:
           GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           CI: ${{ secrets.CI }}
+          DEPLOYMENT_TYPE: ${{ secrets.DEPLOYMENT_TYPE }}

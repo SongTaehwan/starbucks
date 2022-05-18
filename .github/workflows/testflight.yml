@@ -74,3 +74,4 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           # Notification
           SLACK_URL: ${{ secrets.SLACK_URL }}
+          DEPLOYMENT_TYPE: ${{ secrets.DEPLOYMENT_TYPE }}
