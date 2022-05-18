@@ -18,12 +18,20 @@ default_platform(:ios)
 platform :ios do
   SLACK_URL = ENV["SLACK_URL"]
   APP_URL = ENV["APP_URL"]
+  WORKSPACE = "Starbucks.xcworkspace"
+  SCHEME = "Starbucks"
+  GIT_AUTH_TOKEN = ENV["GIT_AUTH_TOKEN"]
+  CI = ENV["CI"]
+  S3_ACCESS_KEY = ENV['S3_ACCESS_KEY']
+  S3_SECRET_ACCESS_KEY = ENV['S3_SECRET_ACCESS_KEY']
+  S3_BUCKET = ENV['S3_BUCKET']
+  S3_REGION = ENV['S3_REGION']
 
   desc "Run tests"
   lane :test do
     run_tests(
-      workspace: "Starbucks.xcworkspace",
-      scheme: "Starbucks",
+      workspace: WORKSPACE,
+      scheme: SCHEME,
       device: "iPhone 13 Pro"
     )
 
@@ -41,17 +49,17 @@ platform :ios do
 
   desc "🏃‍♂️ Push a new dev build to S3"
   lane :dev do
-    setup_ci if ENV['CI']
+    setup_ci if CI
 
     sync_code_signing(
-      git_basic_authorization: ENV["GIT_AUTH_TOKEN"],
+      git_basic_authorization: GIT_AUTH_TOKEN,
       type: "development", 
       readonly: true
     )
 
     build_app(
-      workspace: "Starbucks.xcworkspace",
-      scheme: "Starbucks",
+      workspace: WORKSPACE,
+      scheme: SCHEME,
       output_directory: "./Build",
       configuration: "Debug",
       silent: true,
@@ -84,10 +92,10 @@ platform :ios do
     desc "🪣 Upload a new ipa file to S3"
     aws_s3(
       # All of these are used to make Shenzhen's `ipa distribute:s3` command
-      access_key: ENV['S3_ACCESS_KEY'],               # Optional - defaults to AWS Instance Profile Creds.
-      secret_access_key: ENV['S3_SECRET_ACCESS_KEY'], # Optional - defaults to AWS Instance Profile Creds.
-      bucket: ENV['S3_BUCKET'],                       # Required from user.
-      region: ENV['S3_REGION'],                       # Required from user.
+      access_key: S3_ACCESS_KEY,               # Optional - defaults to AWS Instance Profile Creds.
+      secret_access_key: S3_SECRET_ACCESS_KEY, # Optional - defaults to AWS Instance Profile Creds.
+      bucket: S3_BUCKET,                       # Required from user.
+      region: S3_REGION,                       # Required from user.
       upload_metadata: true,                          # Upload version.json, plist and HTML. Set to false to skip uploading of these files.
       plist_file_name: "manifest.plist",
       path: "",
