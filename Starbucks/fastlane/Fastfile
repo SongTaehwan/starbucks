@@ -19,7 +19,8 @@ platform :ios do
   SLACK_URL = ENV["SLACK_URL"]
   APP_URL = ENV["APP_URL"]
   WORKSPACE = "Starbucks.xcworkspace"
-  SCHEME = "Starbucks"
+  DEBUG_SCHEME = "Debug"
+  RELEASE_SCHEME = "Release"
   GIT_AUTH_TOKEN = ENV["GIT_AUTH_TOKEN"]
   CI = ENV["CI"]
   S3_ACCESS_KEY = ENV['S3_ACCESS_KEY']
@@ -31,23 +32,12 @@ platform :ios do
   lane :test do
     run_tests(
       workspace: WORKSPACE,
-      scheme: SCHEME,
+      scheme: DEBUG_SCHEME,
       device: "iPhone 13 Pro"
-    )
-
-    slack(
-      message: "✅ Test done!",
-      slack_url: SLACK_URL,
-      success: true, 
-      # Output containing extended log output
-      payload: {
-        "Build Date" => Time.new.to_s,
-        "Built by" => "Fastlane",
-      } 
     )
   end
 
-  desc "🏃‍♂️ Push a new dev build to S3"
+  desc "🏃‍♂️ Deployment Process for Development with AWS S3"
   lane :dev do
     setup_ci if CI
 
@@ -59,7 +49,7 @@ platform :ios do
 
     build_app(
       workspace: WORKSPACE,
-      scheme: SCHEME,
+      scheme: DEBUG_SCHEME,
       output_directory: "./Build",
       configuration: "Debug",
       silent: true,
@@ -75,18 +65,6 @@ platform :ios do
         signingStyle: "automatic", # 자동 signing
         thinning: "<none>" # 디바이스 특성에 맞게 설치 최적화
       }
-    )
-
-    desc "✅ Notify build result"
-    slack(
-      message: "App debug build done!",
-      slack_url: SLACK_URL,
-      success: true, 
-      # Output containing extended log output
-      payload: {
-        "Build Date" => Time.new.to_s,
-        "Built by" => "Fastlane",
-      } 
     )
 
     desc "🪣 Upload a new ipa file to S3"
@@ -115,7 +93,40 @@ platform :ios do
         "Built by" => "Fastlane",
       } 
     )
+  end
 
+  desc "🏃‍♂️ Deploy app to Testflight" 
+  lane :flight do
+    setup_ci if CI
+
+    sync_code_signing(
+      git_basic_authorization: GIT_AUTH_TOKEN,
+      type: "appstore", 
+      readonly: true
+    )
+
+    build_app(
+      silent: true,
+      workspace: WORKSPACE,
+      scheme: RELEASE_SCHEME,
+      configuration: "Release",
+      export_method: "app-store",
+      include_bitcode: true,
+      include_symbols: true
+    )
+
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      changelog: "Testing App"
+    )
+  end
+
+  desc "👍 Send message when job's done "
+  after_all do |lane|
+    say("Successfully finished lane (#{lane})!")
+    slack(
+      message: "Job's Done! (#{lane})"
+    )
   end
 
   desc "🚨 Sending error notification"

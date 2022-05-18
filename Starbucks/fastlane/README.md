@@ -29,7 +29,15 @@ Run tests
 [bundle exec] fastlane ios dev
 ```
 
-🏃‍♂️ Push a new dev build to S3
+🏃‍♂️ Deployment Process for Development with AWS S3
+
+### ios flight
+
+```sh
+[bundle exec] fastlane ios flight
+```
+
+🏃‍♂️ Deploy app to Testflight
 
 ----
 
