@@ -58,7 +58,7 @@ jobs:
         run: pod install
       
       - name: Build and deploy
-        run: bundle exec fastlane dev
+        run: bundle exec fastlane flight
         env:
           # Apple credentials
           TEAM_ID: ${{ secrets.TEAM_ID }}
@@ -74,4 +74,4 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           # Notification
           SLACK_URL: ${{ secrets.SLACK_URL }}
-          DEPLOYMENT_TYPE: ${{ secrets.DEPLOYMENT_TYPE }}
+          # DEPLOYMENT_TYPE: ${{ secrets.DEPLOYMENT_TYPE }}
