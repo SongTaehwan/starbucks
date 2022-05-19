@@ -35,17 +35,7 @@ platform :ios do
   S3_BUCKET = ENV['S3_BUCKET']
   S3_REGION = ENV['S3_REGION']
 
-  desc "Run tests"
-  lane :test do
-    run_tests(
-      workspace: WORKSPACE,
-      scheme: DEBUG,
-      device: "iPhone 13 Pro"
-    )
-  end
-
-  desc "🏃‍♂️ Deployment Process for Development with AWS S3"
-  lane :dev do
+  lane :get_certificate do |options|
     setup_ci if CI
 
     sync_code_signing(
@@ -54,10 +44,12 @@ platform :ios do
       storage_mode: "git",
       git_url: MATCH_GIT_URL,
       git_basic_authorization: GIT_AUTH_TOKEN,
-      type: "development", 
+      type: options[:type], 
       readonly: true
     )
+  end
 
+  lane :developent_build do
     build_app(
       workspace: WORKSPACE,
       scheme: DEBUG,
@@ -77,6 +69,33 @@ platform :ios do
         thinning: "<none>" # 디바이스 특성에 맞게 설치 최적화
       }
     )
+  end
+
+  lane :release_build do
+    build_app(
+      silent: true,
+      workspace: WORKSPACE,
+      scheme: RELEASE,
+      configuration: RELEASE,
+      export_method: "app-store",
+      include_bitcode: true,
+      include_symbols: true
+    )
+  end
+
+  desc "Run tests"
+  lane :test do
+    run_tests(
+      workspace: WORKSPACE,
+      scheme: DEBUG,
+      device: "iPhone 13 Pro"
+    )
+  end
+
+  desc "🏃‍♂️ Deployment Process for Development with AWS S3"
+  lane :dev do
+    get_certificate(type: "development")
+    developent_build
 
     desc "🪣 Upload a new ipa file to S3"
     aws_s3(
@@ -95,34 +114,18 @@ platform :ios do
 
   desc "🏃‍♂️ Deploy app to Testflight" 
   lane :flight do
-    setup_ci if CI
+    get_certificate(type: "appstore")
+    
+    increment_build_number
+    # increment_build_number(
+    #   build_number: latest_testflight_build_number(
+    #     api_key: ENV["APPLE_API_KEY"],
+    #     username: ENV["PILOT_USERNAME"],
+    #     team_id: ENV["PILOT_TEAM_ID"]
+    #   ) + 1
+    # )
 
-    sync_code_signing(
-      username: MATCH_USERNAME,
-      team_id: MATCH_TEAM_ID,
-      storage_mode: "git",
-      git_url: MATCH_GIT_URL,
-      git_basic_authorization: GIT_AUTH_TOKEN,
-      type: "appstore", 
-      readonly: true
-    )
-
-    increment_build_number(
-      build_number: latest_testflight_build_number(
-        username: ENV["PILOT_USERNAME"],
-        team_id: ENV["PILOT_TEAM_ID"]
-      ) + 1
-    )
-
-    build_app(
-      silent: true,
-      workspace: WORKSPACE,
-      scheme: RELEASE,
-      configuration: RELEASE,
-      export_method: "app-store",
-      include_bitcode: true,
-      include_symbols: true
-    )
+    release_build
 
     upload_to_testflight(
       # 없으면 일반적인 애플 로그인 프로세스로 진행
