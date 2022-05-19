@@ -133,7 +133,7 @@ platform :ios do
       # https://docs.fastlane.tools/actions/upload_to_testflight/#use-an-application-specific-password-to-upload
       verbose: true,
       # Github Env 로 넣기
-      username: ENV["PILOT_USERNAME"], # 애플 계정 아이디
+      # username: ENV["PILOT_USERNAME"], # 애플 계정 아이디
       apple_id: ENV["PILOT_APPLE_ID"], # 앱 아이디
       team_id: ENV["PILOT_TEAM_ID"], # App Store Connect 팀 아이디
       dev_portal_team_id: ENV["PILOT_DEV_PORTAL_TEAM_ID"], # Dev Portal Team ID
