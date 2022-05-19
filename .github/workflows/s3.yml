@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Deployment
+name: S3
 
 # Controls when the workflow will run
 on:
@@ -56,19 +56,23 @@ jobs:
         run: pod install
       
       - name: Build and deploy
-        run: bundle exec fastlane dev
+        run: bundle exec fastlane dev --verbose
         env:
+          # General
+          CI: ${{ secrets.CI }}
           SLACK_URL: ${{ secrets.SLACK_URL }}
+          APP_BUNDLE_ID: ${{ secrets.APP_BUNDLE_ID }}
+
+          # AWS S3
           S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
           S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
           S3_REGION: ${{ secrets.S3_REGION }}
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
-          APP_URL: ${{ secrets.APP_URL }}
-          TEAM_ID: ${{ secrets.TEAM_ID }}
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APP_BUNDLE_IDENTIFIER: ${{ secrets.APP_BUNDLE_IDENTIFIER }}
-          GIT_URL: ${{ secrets.GIT_URL }}
-          GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}
+          BUCKET_URL: ${{ secrets.BUCKET_URL }}
+
+          # Github & Match
+          FASTLANE_TEAM_ID: ${{ secrets.FASTLANE_TEAM_ID }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          CI: ${{ secrets.CI }}
-          DEPLOYMENT_TYPE: ${{ secrets.DEPLOYMENT_TYPE }}
+          MATCH_USERNAME: ${{ secrets.MATCH_USERNAME }}

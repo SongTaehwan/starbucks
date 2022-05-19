@@ -58,20 +58,25 @@ jobs:
         run: pod install
       
       - name: Build and deploy
-        run: bundle exec fastlane flight
+        run: bundle exec fastlane flight --verbose
         env:
-          # Apple credentials
-          TEAM_ID: ${{ secrets.TEAM_ID }}
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APP_BUNDLE_IDENTIFIER: ${{ secrets.APP_BUNDLE_IDENTIFIER }}
-          # Testflight
-          FASTLANE_ITC_TEAM_ID: ${{ secrets.FASTLANE_ITC_TEAM_ID }}
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
-          # for downloading certificate & profile
-          GIT_URL: ${{ secrets.GIT_URL }}
-          GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}
+          # General configuration
           CI: ${{ secrets.CI }}
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          # Notification
           SLACK_URL: ${{ secrets.SLACK_URL }}
-          DEPLOYMENT_TYPE: ${{ secrets.DEPLOYMENT_TYPE }}
+
+          # App information
+          APP_BUNDLE_ID: ${{ secrets.APP_BUNDLE_ID }}
+
+          # Apple credentials
+          PILOT_USERNAME: ${{ secrets.PILOT_USERNAME }}
+          PILOT_TEAM_ID: ${{ secrets.PILOT_TEAM_ID }}
+          PILOT_APPLE_ID: ${{ secrets.PILOT_APPLE_ID }}
+          PILOT_DEV_PORTAL_TEAM_ID: ${{ secrets.PILOT_DEV_PORTAL_TEAM_ID }}
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+
+          # Match for downloading certificate & profile
+          MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+          MATCH_USERNAME: ${{ secrets.MATCH_USERNAME }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}
