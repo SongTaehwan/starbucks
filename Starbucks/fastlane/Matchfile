@@ -2,7 +2,8 @@ git_url(ENV["GIT_URL"])
 
 storage_mode("git")
 
-type("development") # The default type, can be: appstore, adhoc, enterprise or development
+# type 생략해도 lane 에서 직접 지정해도 로컬, CI 모두 정상 작동함
+type(ENV["DEPLOYMENT_TYPE"]) # The default type, can be: appstore, adhoc, enterprise or development
 
 # app_identifier(["tools.fastlane.app", "tools.fastlane.app2"])
 # username("user@fastlane.tools") # Your Apple Developer Portal username
